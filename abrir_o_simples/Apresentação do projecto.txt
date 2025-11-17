@@ -1,0 +1,257 @@
+1. Introdução ao Projeto
+
+Este projeto implementa um CRUD completo em Java, utilizando a tecnologia JDBC (Java Database Connectivity) para realizar operações de persistência de dados em um banco MySQL. CRUD é um acrônimo para Create (Criar), Read (Ler), Update (Atualizar) e Delete (Excluir). Essas quatro operações representam a base de qualquer sistema que manipula informações, como cadastros de clientes, alunos, produtos, funcionários, entre outros.
+
+O objetivo principal do projeto é demonstrar, de forma clara e estruturada, como uma aplicação Java pode interagir diretamente com um banco de dados relacional, enviando comandos SQL, recebendo resultados e traduzindo esses dados em objetos Java. É um exemplo prático de separação de responsabilidades, organização de código e uso de boas práticas na camada de acesso a dados.
+
+O sistema é composto por três partes principais:
+
+Classe Modelo (Usuario.java)
+Representa a entidade manipulada pelo sistema.
+
+Classe DAO (UsuarioDAO.java)
+Camada responsável por executar comandos SQL e comunicar-se com o banco.
+
+Classe Principal (Main.java)
+Ponto de entrada do sistema, onde os métodos CRUD são testados.
+
+Esse projeto fornece a estrutura fundamental utilizada em praticamente todos os sistemas corporativos e acadêmicos que interagem com bancos de dados.
+
+2. Objetivo e Finalidade do Projeto
+
+O propósito principal deste projeto é mostrar como construir um CRUD simples e funcional em Java. Ele serve tanto como base educacional quanto como modelo para aplicações reais.
+
+Além disso, ele demonstra diversos conceitos importantes:
+
+a) Persistência de dados
+
+O sistema grava informações de forma permanente no banco. Assim, mesmo que a aplicação seja encerrada, os dados permanecem armazenados.
+
+b) Comunicação entre Java e MySQL
+
+Através do JDBC, o programa consegue:
+
+abrir conexões com o banco;
+
+enviar comandos SQL;
+
+obter resultados em forma de ResultSet;
+
+converter esses resultados em objetos Java;
+
+atualizar e remover informações armazenadas.
+
+c) Boas práticas com MVC básico
+
+Embora não seja um MVC completo, o projeto já introduz:
+
+Modelo → Classe Usuario
+
+Controle de dados → Classe UsuarioDAO
+
+Execução/Interface simples → Classe Main
+
+Essa separação é fundamental para que o software seja organizado, fácil de manter e escalável.
+
+d) Uso de Prepared Statements
+
+O sistema utiliza PreparedStatement para:
+
+evitar SQL Injection (ataques que podem comprometer o banco);
+
+melhorar performance com consultas pré-compiladas;
+
+tornar o código mais seguro e legível.
+
+3. Funcionamento Geral do Projeto
+
+Para entender o funcionamento, imagine o fluxo de informação dentro do sistema:
+
+O usuário (ou o programador, via Main.java) faz uma solicitação, como cadastrar um novo usuário.
+
+O método correspondente do DAO é chamado, por exemplo adicionarUsuario().
+
+O DAO abre uma conexão com o banco usando DriverManager.getConnection().
+
+Um comando SQL é preparado e executado.
+
+O banco responde confirmando a operação ou enviando resultados.
+
+O DAO transforma esses dados em objetos Usuario.
+
+A aplicação exibe resultados ou mensagens de conclusão.
+
+Essa comunicação é contínua e forma o coração da aplicação.
+
+4. Descrição Detalhada das Funcionalidades do CRUD
+CREATE — Criar dados
+
+O projeto permite inserir novos usuários no banco de dados.
+Ao chamar o método adicionarUsuario(), ele:
+
+abre conexão com o banco;
+
+prepara um comando SQL do tipo INSERT;
+
+envia os dados (nome e e-mail);
+
+grava o usuário na tabela usuarios.
+
+Esse processo registra permanentemente as informações.
+
+READ — Ler dados
+
+A leitura dos dados é feita pelo método listarUsuarios(), que:
+
+executa um comando SELECT * FROM usuarios;
+
+obtém todos os registros existentes;
+
+converte cada linha da tabela em um objeto Usuario;
+
+coloca todos esses objetos em uma lista Java;
+
+devolve essa lista ao chamador.
+
+Com isso, o sistema pode exibir todos os usuários cadastrados.
+
+UPDATE — Atualizar dados
+
+A atualização é feita pelo método atualizarUsuario(), que:
+
+recebe um usuário já existente (com ID definido);
+
+prepara um comando UPDATE;
+
+substitui os dados antigos pelos novos;
+
+garante que apenas o registro indicado pelo id seja modificado.
+
+Essa funcionalidade permite manter os dados atuais e corretos.
+
+DELETE — Excluir dados
+
+O método excluirUsuario() é responsável por remover um registro da tabela. Ele:
+
+recebe o ID do usuário a ser deletado;
+
+executa um comando DELETE FROM usuarios WHERE id = ?;
+
+elimina o registro permanentemente do banco.
+
+Essa operação mantém o banco limpo e atualizado.
+
+5. Estrutura de Arquitetura do Projeto
+
+O sistema utiliza um formato simples, mas extremamente comum no desenvolvimento de software:
+
+a) Camada de Modelo
+
+A classe Usuario define:
+
+atributos;
+
+construtores;
+
+getters e setters.
+
+Ela representa a entidade da vida real que estamos manipulando.
+
+b) Camada DAO
+
+O DAO é responsável por:
+
+abrir e fechar conexões;
+
+executar comandos SQL;
+
+tratar erros de banco;
+
+converter dados entre Java e SQL.
+
+Sem essa camada, a aplicação ficaria confusa e difícil de dar manutenção.
+
+c) Camada de Aplicação
+
+A classe Main simula o uso real do sistema.
+Ela permite:
+
+cadastrar novos usuários,
+
+listar dados existentes,
+
+editar registros,
+
+excluir usuários do banco.
+
+Ela funciona como o ponto de teste da aplicação.
+
+6. Importância do Projeto no Contexto de Desenvolvimento
+
+Esse tipo de projeto é fundamental para:
+
+✔ Aprendizado de bancos de dados
+
+É a base para entender como sistemas profissionais manipulam dados.
+
+✔ Base para frameworks
+
+Ao aprender CRUD com JDBC, o desenvolvedor consegue entender com muito mais facilidade:
+
+JPA/Hibernate
+
+Spring Data JPA
+
+MyBatis
+
+Todos esses frameworks fazem internamente o que o sistema faz manualmente.
+
+✔ Construção de sistemas reais
+
+CRUDs são usados em:
+
+sistemas de vendas,
+
+cadastros de clientes,
+
+sistemas acadêmicos,
+
+hospitais,
+
+bancos,
+
+e praticamente qualquer software corporativo.
+
+✔ Prática de SQL
+
+O projeto reforça o uso correto de comandos SQL essenciais:
+
+INSERT
+
+SELECT
+
+UPDATE
+
+DELETE
+
+✔ Incentivo à organização do código
+
+Separa responsabilidades e favorece o código limpo.
+
+7. Conclusão Geral
+
+Este projeto CRUD em Java apresenta de forma clara e prática como criar uma aplicação que interage diretamente com um banco de dados MySQL usando JDBC. Ele demonstra as quatro operações fundamentais de persistência, organiza o código conforme boas práticas de camadas e oferece um modelo simples, porém poderoso, para sistemas reais.
+
+Apesar de ser um projeto pequeno, ele contém todos os elementos necessários para evoluir para aplicações maiores, como APIs REST, sistemas Web, sistemas desktop e soluções empresariais. Ele também serve como base para tecnologias mais avançadas, como Spring Boot e JPA.
+
+Em essência, o sistema mostra:
+
+como persistir dados,
+
+como recuperar informações,
+
+como atualizar registros,
+
+como remover dados do banco de forma segura.
+
+E tudo isso com separação clara entre domínio, lógica de acesso a dados e execução da aplicação.
