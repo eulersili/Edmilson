@@ -1,0 +1,12 @@
+CREATE DATABASE crud_java;
+USE crud_java;
+
+CREATE TABLE funcionarios (
+    numero_funcionario INT AUTO_INCREMENT PRIMARY KEY,
+    primeiro_nome VARCHAR(50),
+    nome_meio VARCHAR(50),
+    ultimo_nome VARCHAR(50),
+    email VARCHAR(100),
+    contacto VARCHAR(20),
+    salario DECIMAL(10,2)
+);
